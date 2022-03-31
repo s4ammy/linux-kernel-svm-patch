@@ -1,5 +1,3 @@
-# Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
-
 pkgbase=linux-allah
 pkgver=5.14.16.arch1
 pkgrel=1
