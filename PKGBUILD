@@ -8,7 +8,6 @@ arch=(x86_64)
 license=(GPL2)
 makedepends=(
   bc kmod libelf pahole cpio perl tar xz
-  xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick
   git
 )
 options=('!strip')
@@ -17,11 +16,13 @@ source=(
   "$_srcname::git+https://github.com/archlinux/linux#tag=$_srctag"
   config         # the main kernel config file
   svm.c
+  vmx.c
 )
 
 sha256sums=('SKIP'
             'SKIP'
-            'SKIP')
+            'c131aa4cddd8ab8f78a3ca3ef65e2bea5371c4c3c8af42097abf71f96109e0d7'
+            '8822dde0d6c25e7c2bc3a39b92899836a0f6a2efd00fad41daa0eeb9a8524260')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
@@ -44,8 +45,9 @@ prepare() {
     patch -Np1 < "../$src"
   done
 
-  echo "Applying SVM patch..."
+  echo "Applying SVM patches..."
   cp ../svm.c arch/x86/kvm/svm/svm.c
+  cp ../vmx.c arch/x86/kvm/vmx/vmx.c
 
   echo "Setting config..."
   cp ../config .config
