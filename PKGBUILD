@@ -15,11 +15,13 @@ _srcname=archlinux-linux
 source=(
   "$_srcname::git+https://github.com/archlinux/linux#tag=$_srctag"
   config         # the main kernel config file
+  0001-disable-werror.patch
   svm.c
   vmx.c
 )
 
 sha256sums=('SKIP'
+            'SKIP'
             'SKIP'
             'c131aa4cddd8ab8f78a3ca3ef65e2bea5371c4c3c8af42097abf71f96109e0d7'
             '8822dde0d6c25e7c2bc3a39b92899836a0f6a2efd00fad41daa0eeb9a8524260')
